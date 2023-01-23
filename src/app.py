@@ -6,15 +6,20 @@ todos = [
     { "label": "My second task", "done": False }
 ]
 
-@app.route('/todos', methods=['GET'])
+@app.route('/', methods=['GET'])
 def hello_world():
-    return jsonify(todos)
+    return '<h1>Hello World!</h1>'
 
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
-    request_body = request.data
-    print('Incoming request with the following body', request_body)
-    return 'Response for the POST todo'
+    todos.append(request.json)
+    return jsonify(todos)
+
+@app.route('/todos/<int:position>', methods=['DELETE'])
+def delete_todo(position):
+    print("This is the position to delete: ",position)
+    del todos[position]
+    return jsonify(todos)
 
 
 

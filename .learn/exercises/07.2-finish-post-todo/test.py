@@ -113,7 +113,7 @@ def test_add_and_get(client):
     response = client.get('/todos')
     todos = json.loads(response.data)
 
-    response2 = client.post('/todos', json = { "done": True, "label": "Sample Todo 2" })
+    response2 = client.post('/todos', json = { "done": True, "label": "Sample Todo 4" })
     data = json.loads(response2.data)
 
     assert (len(todos) + 1) == len(data)
